@@ -16,6 +16,10 @@ class User(Base):
     phone = Column(Integer, nullable=True)
     web = Column(String(50), nullable=True)
     password = Column(String(50), nullable=False)
+    follower = relationship('follower')
+    following = relationship('following')
+    post = relationship('post')
+    comment = relationship('comment')
 
 class Follower(Base):
     __tablename__='follower'
@@ -34,6 +38,8 @@ class Post(Base):
     id = Column(String, primary_key=True)
     user_id = Column(String(50), ForeignKey('user.user_name'))
     post_text = Column(String(300), nullable=True)
+    media = relationship('media')
+    comment = relationship('comment')
     
     
 class Media(Base):
